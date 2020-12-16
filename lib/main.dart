@@ -23,7 +23,8 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      home:Scaffold(
       appBar: AppBar(
         title: Text('S_ATM'),
         centerTitle: true,
@@ -37,12 +38,14 @@ class _MyAppState extends State<MyApp> {
                 getImage();
               }
                ,),
-              _image == null ? Container(): Image.file(_image,height:300,width:300),
+              _image == null? Container(): Image.file(_image,height:300,width:300),
 
           ]
         )
         ,
       ),
+
+    )
 
     );
   }
