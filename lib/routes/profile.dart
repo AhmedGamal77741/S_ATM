@@ -16,14 +16,10 @@ class _ProfileState extends State<Profile> {
   int total ;
   List outputs;
    Map info ={
-      '0 Mahmoud Sabry':Info(adderess: 'debrk',balance:'10000'),
-      '1 Zeyad mamdouh':Info(adderess: 'kafrelmtaez',balance:'2000'),
-      '2 Makram Ali':Info(adderess: 'kafrelmtaez',balance:'2000'),
-      '3 Mohamed Ashraf':Info(adderess: 'kafrelmtaez',balance:'2000'),
-      '4 Zeyad Elgammel':Info(adderess: 'kafrelmtaez',balance:'2000'),
-      '5 Abdulrahman Amr':Info(adderess: 'kafrelmtaez',balance:'2000'),
-      '6 Abdulrahman Walid  ':Info(adderess: 'kafrelmtaez',balance:'2000'),
-      '7 Ahmed Gamal':Info(adderess: 'kafrelmtaez',balance:'2000'), 
+      'Makram Ali':Info(adderess: 'debrk',balance:'10000'),
+      'Zeyad mamdouh':Info(adderess: 'كفر المصيلحه',balance:'20000'),
+      'Mahmoud Sabry':Info(adderess: 'shbien',balance:'2000'),
+      
       };
   // ignore: non_constant_identifier_names
   CreateAlertDialog(BuildContext context)async{
@@ -34,14 +30,18 @@ class _ProfileState extends State<Profile> {
         color:Colors.white,
         fontFamily: 'FredokaOne'
       ),),
-      content: Text('confrim you want to cash $_text.',style: TextStyle(color:Colors.white),) ,
+      content: Text(_text) ,
       actions: <Widget>[
         MaterialButton(
           onPressed: ()async{
              Navigator.pop(context);
             setState(() {
-              total =int.parse(info['${outputs[0]["label"]}'].balance)-int.parse(_text);
+              if (int.parse(_text)>int.parse(info['${outputs[0]["label"]}'].balance)){
+             _text="your maximum withdraw is ${info['${outputs[0]["label"]}'].balance}";
+              }else{
+                total =int.parse(info['${outputs[0]["label"]}'].balance)-int.parse(_text);
               info['${outputs[0]["label"]}'].balance=total.toString();
+              }
             });
          
         },
@@ -86,7 +86,7 @@ void initState() {
             Center(
               child: CircleAvatar(
                 radius: 40.0,
-                backgroundImage: AssetImage('assets/${outputs[0]["label"]}.jpg'),
+                backgroundImage: AssetImage('assets/${outputs[0]["label"]}.jpeg'),
               ),
             ),
             Divider(
